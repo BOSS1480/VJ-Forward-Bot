@@ -21,7 +21,7 @@ async def settings(client, message):
 async def settings_query(bot, query):
   user_id = query.from_user.id
   i, type = query.data.split("#")
-  buttons = [[InlineKeyboardButton('back', callback_data="settings#main")]]
+  buttons = [[InlineKeyboardButton('חזרה', callback_data="settings#main")]]
   if type=="main":
      await query.message.edit_text(
        "<b>כאן לוח ההגדרות ⚙️\n\nשנה את ההגדרות שלך כרצונך 👇</b>",
@@ -76,7 +76,7 @@ async def settings_query(bot, query):
                          callback_data=f"settings#editchannels_{channel['chat_id']}")])
      buttons.append([InlineKeyboardButton('✚ הוסף ערוץ ✚', 
                       callback_data="settings#addchannel")])
-     buttons.append([InlineKeyboardButton('חזרנ', 
+     buttons.append([InlineKeyboardButton('חזרה', 
                       callback_data="settings#main")])
      await query.message.edit_text( 
        "<b><u>הערוצים שלי:</b></u>\n\n<b>אתה יכול לנהל את הצ'אטים היעד שלך כאן</b>",
@@ -130,24 +130,24 @@ async def settings_query(bot, query):
   elif type=="removeuserbot":
      await db.remove_userbot(user_id)
      await query.message.edit_text(
-        "<b>successfully updated</b>",
+        "<b>עודכן בהצלחה!</b>",
         reply_markup=InlineKeyboardMarkup(buttons))
      
   elif type.startswith("editchannels"): 
      chat_id = type.split('_')[1]
      chat = await db.get_channel_details(user_id, chat_id)
-     buttons = [[InlineKeyboardButton('❌ Remove ❌', callback_data=f"settings#removechannel_{chat_id}")
+     buttons = [[InlineKeyboardButton('❌ מחק ❌', callback_data=f"settings#removechannel_{chat_id}")
                ],
-               [InlineKeyboardButton('back', callback_data="settings#channels")]]
+               [InlineKeyboardButton('חזרה', callback_data="settings#channels")]]
      await query.message.edit_text(
-        f"<b><u>📄 CHANNEL DETAILS</b></u>\n\n<b>- TITLE:</b> <code>{chat['title']}</code>\n<b>- CHANNEL ID: </b> <code>{chat['chat_id']}</code>\n<b>- USERNAME:</b> {chat['username']}",
+        f"<b><u>📄 פרטי הערוץ</b></u>\n\n<b>- כותרת:</b> <code>{chat['title']}</code>\n<b>- מזהה ערוץ: </b> <code>{chat['chat_id']}</code>\n<b>- יוזר:</b> {chat['username']}",
         reply_markup=InlineKeyboardMarkup(buttons))
 
   elif type.startswith("removechannel"):
      chat_id = type.split('_')[1]
      await db.remove_channel(user_id, chat_id)
      await query.message.edit_text(
-        "<b>successfully updated</b>",
+        "<b>עודכן בהצלחה!</b>",
         reply_markup=InlineKeyboardMarkup(buttons))
 
   elif type=="caption":
@@ -155,87 +155,87 @@ async def settings_query(bot, query):
      data = await get_configs(user_id)
      caption = data['caption']
      if caption is None:
-        buttons.append([InlineKeyboardButton('✚ Add Caption ✚', 
+        buttons.append([InlineKeyboardButton('✚ הוסף כיתוב ✚', 
                       callback_data="settings#addcaption")])
      else:
         buttons.append([InlineKeyboardButton('See Caption', 
                       callback_data="settings#seecaption")])
-        buttons[-1].append(InlineKeyboardButton('🗑️ Delete Caption', 
+        buttons[-1].append(InlineKeyboardButton('🗑️ מחק כיתוב', 
                       callback_data="settings#deletecaption"))
-     buttons.append([InlineKeyboardButton('back', 
+     buttons.append([InlineKeyboardButton('חזרה', 
                       callback_data="settings#main")])
      await query.message.edit_text(
-        "<b><u>CUSTOM CAPTION</b></u>\n\n<b>You can set a custom caption to videos and documents. Normaly use its default caption</b>\n\n<b><u>AVAILABLE FILLINGS:</b></u>\n- <code>{filename}</code> : Filename\n- <code>{size}</code> : File size\n- <code>{caption}</code> : default caption",
+        "<b><u>כתובית מותאמת אישית</b></u>\n\n<b>אתה יכול להגדיר כיתוב מותאם אישית לסרטונים ומסמכים.  בדרך כלל השתמש בכיתוב ברירת המחדל שלו</b>\n\n<b><u>מילויים זמינים:</b></u>\n- <code>{filename}</code> : שם קובץ\n- <code>{size}</code> : גודל קובץ\n- <code>{caption}</code> : כיתוב ברירת מחדל",
         reply_markup=InlineKeyboardMarkup(buttons))
 
   elif type=="seecaption":   
      data = await get_configs(user_id)
-     buttons = [[InlineKeyboardButton('🖋️ Edit Caption', 
+     buttons = [[InlineKeyboardButton('🖋️ ערוך כיתוב', 
                   callback_data="settings#addcaption")
                ],[
-               InlineKeyboardButton('back', 
+               InlineKeyboardButton('חזרה', 
                  callback_data="settings#caption")]]
      await query.message.edit_text(
-        f"<b><u>YOUR CUSTOM CAPTION</b></u>\n\n<code>{data['caption']}</code>",
+        f"<b><u>הכיתוב המותאם אישית שלך:</b></u>\n\n<code>{data['caption']}</code>",
         reply_markup=InlineKeyboardMarkup(buttons))
 
   elif type=="deletecaption":
      await update_configs(user_id, 'caption', None)
      await query.message.edit_text(
-        "<b>successfully updated</b>",
+        "<b>עודכן בהצלחה</b>",
         reply_markup=InlineKeyboardMarkup(buttons))
 
   elif type=="addcaption":
      await query.message.delete()
-     caption = await bot.ask(query.message.chat.id, "Send your custom caption\n/cancel - <code>cancel this process</code>")
+     caption = await bot.ask(query.message.chat.id, "שלח את הכיתוב המותאם אישית שלך\n/cancel - <code>לבטל את התהליך הזה</code>")
      if caption.text=="/cancel":
         return await caption.reply_text(
-                  "<b>process canceled !</b>",
+                  "<b>התהליך בוטל!</b>",
                   reply_markup=InlineKeyboardMarkup(buttons))
      try:
          caption.text.format(filename='', size='', caption='')
      except KeyError as e:
          return await caption.reply_text(
-            f"<b>wrong filling {e} used in your caption. change it</b>",
+            f"<b>מילוי שגוי {e} בשימוש בכיתוב שלך.  לשנות את זה</b>",
             reply_markup=InlineKeyboardMarkup(buttons))
      await update_configs(user_id, 'caption', caption.text)
      await caption.reply_text(
-        "<b>successfully updated</b>",
+        "<b>עודכן בהצלחה</b>",
         reply_markup=InlineKeyboardMarkup(buttons))
 
   elif type=="button":
      buttons = []
      button = (await get_configs(user_id))['button']
      if button is None:
-        buttons.append([InlineKeyboardButton('✚ Add Button ✚', 
+        buttons.append([InlineKeyboardButton('✚ הוסף כפתור ✚', 
                       callback_data="settings#addbutton")])
      else:
-        buttons.append([InlineKeyboardButton('👀 See Button', 
+        buttons.append([InlineKeyboardButton('👀 צפה בכפתור', 
                       callback_data="settings#seebutton")])
-        buttons[-1].append(InlineKeyboardButton('🗑️ Remove Button ', 
+        buttons[-1].append(InlineKeyboardButton('🗑️ מחק כפתור', 
                       callback_data="settings#deletebutton"))
      buttons.append([InlineKeyboardButton('back', 
                       callback_data="settings#main")])
      await query.message.edit_text(
-        "<b><u>CUSTOM BUTTON</b></u>\n\n<b>You can set a inline button to messages.</b>\n\n<b><u>FORMAT:</b></u>\n`[Forward bot][buttonurl:https://t.me/mychannelurl]`\n",
+        "<b><u>כפתור מותאם אישית</b></u>\n\n<b>אתה יכול להגדיר כפתור מוטבע להודעות.</b>\n\n<b><u>פורמט:</b></u>\n`[Forward bot][buttonurl:https://t.me/bot_sratim_sdarot]`\n",
         reply_markup=InlineKeyboardMarkup(buttons))
 
   elif type=="addbutton":
      await query.message.delete()
-     ask = await bot.ask(user_id, text="**Send your custom button.\n\nFORMAT:**\n`[forward bot][buttonurl:https://t.me/url]`\n")
+     ask = await bot.ask(user_id, text="**שלח את הכפתור המותאם אישית שלך.\n\nפורמט:**\n`[forward bot][buttonurl:https://t.me/bot_sratim_sdarot]`\n")
      button = parse_buttons(ask.text.html)
      if not button:
-        return await ask.reply("**INVALID BUTTON**")
+        return await ask.reply("**כפתור לא חוקי!**")
      await update_configs(user_id, 'button', ask.text.html)
-     await ask.reply("**Successfully button added**",
+     await ask.reply("**הכפתור נוסף בהצלחה!**",
              reply_markup=InlineKeyboardMarkup(buttons))
 
   elif type=="seebutton":
       button = (await get_configs(user_id))['button']
       button = parse_buttons(button, markup=False)
-      button.append([InlineKeyboardButton("back", "settings#button")])
+      button.append([InlineKeyboardButton("חזרה", "settings#button")])
       await query.message.edit_text(
-         "**YOUR CUSTOM BUTTON**",
+         "**הכפתורים שלך**",
          reply_markup=InlineKeyboardMarkup(button))
 
   elif type=="deletebutton":
@@ -248,38 +248,38 @@ async def settings_query(bot, query):
      buttons = []
      db_uri = (await get_configs(user_id))['db_uri']
      if db_uri is None:
-        buttons.append([InlineKeyboardButton('✚ Add Mongo Url ', 
+        buttons.append([InlineKeyboardButton('✚ הוסף קישור mongo', 
                       callback_data="settings#addurl")])
      else:
-        buttons.append([InlineKeyboardButton('👀 See Url', 
+        buttons.append([InlineKeyboardButton('👀 צפה בקישור', 
                       callback_data="settings#seeurl")])
-        buttons[-1].append(InlineKeyboardButton('❌ Remove Url ', 
+        buttons[-1].append(InlineKeyboardButton('❌ מחק קישור', 
                       callback_data="settings#deleteurl"))
-     buttons.append([InlineKeyboardButton('back', 
+     buttons.append([InlineKeyboardButton('חזרה', 
                       callback_data="settings#main")])
      await query.message.edit_text(
-        "<b><u>DATABASE</u>\n\nDatabase is required for store your duplicate messages permenant. other wise stored duplicate media may be disappeared when after bot restart.</b>",
+        "<b><u>מסד נתונים</u>\n\nמסד נתונים נדרש לאחסון ההודעות הכפולות שלך לצמיתות. מדיה כפולה אחרת המאוחסנת בצורה חכמה עשויה להיעלם לאחר הפעלה מחדש של הבוט.</b>",
         reply_markup=InlineKeyboardMarkup(buttons))
 
   elif type=="addurl":
      await query.message.delete()
-     uri = await bot.ask(user_id, "<b>please send your mongodb url.</b>\n\n<i>get your Mongodb url from [MangoDb](https://mongodb.com)</i>", disable_web_page_preview=True)
+     uri = await bot.ask(user_id, "<b>אנא שלח את כתובת האתר שלך ל-mongodb.</b>\n\n<i>קבל את כתובת האתר שלך מ- [MangoDb](https://mongodb.com)</i>", disable_web_page_preview=True)
      if uri.text=="/cancel":
         return await uri.reply_text(
-                  "<b>process canceled !</b>",
+                  "<b>התהליך בוטל !</b>",
                   reply_markup=InlineKeyboardMarkup(buttons))
      if not uri.text.startswith("mongodb+srv://") and not uri.text.endswith("majority"):
-        return await uri.reply("<b>Invalid Mongodb Url</b>",
+        return await uri.reply("<b>כתובת אתר לא חוקית של Mongodb</b>",
                    reply_markup=InlineKeyboardMarkup(buttons))
      connect, udb = await connect_user_db(user_id, uri.text, "test")
      if connect:
         await udb.drop_all()
         await udb.close()
      else:
-        return await uri.reply("<b>Invalid Mongodb Url Cant Connect With This Uri</b>",
+        return await uri.reply("<b>כתובת אתר לא חוקית של Mongodb לא יכולה להתחבר לכתובת האתר הזו</b>",
                   reply_markup=InlineKeyboardMarkup(buttons))
      await update_configs(user_id, 'db_uri', uri.text)
-     await uri.reply("**Successfully database url added**",
+     await uri.reply("**כתובת האתר של מסד הנתונים נוספה בהצלחה**",
              reply_markup=InlineKeyboardMarkup(buttons))
 
   elif type=="seeurl":
@@ -289,12 +289,12 @@ async def settings_query(bot, query):
   elif type=="deleteurl":
      await update_configs(user_id, 'db_uri', None)
      await query.message.edit_text(
-        "**Successfully your database url deleted**",
+        "**כתובת האתר של מסד הנתונים שלך נמחקה בהצלחה**",
         reply_markup=InlineKeyboardMarkup(buttons))
 
   elif type=="filters":
      await query.message.edit_text(
-        "<b><u>💠 CUSTOM FILTERS 💠</b></u>\n\n**configure the type of messages which you want forward**",
+        "<b><u>💠 מסננים מותאמים אישית 💠</b></u>\n\n**הגדר את סוג ההודעות שברצונך להעביר**",
         reply_markup=await filters_buttons(user_id))
 
   elif type=="nextfilters":
@@ -317,14 +317,14 @@ async def settings_query(bot, query):
     settings = await get_configs(user_id)
     size = settings.get('min_size', 0)
     await query.message.edit_text(
-       f'<b><u>SIZE LIMIT</b></u><b>\n\nyou can set file Minimum size limit to forward\n\nfiles with greater than `{size} MB` will forward</b>',
+       f'<b><u>מגבלת גודל</b></u><b>\n\nאתה יכול להגדיר את מגבלת הגודל המינימלית לקובץ קדימה\n\nקבצים עם יותר מ- `{size} MB` יעביר</b>',
        reply_markup=size_button(size))
      
   elif type.startswith("maxfile_size"):
     settings = await get_configs(user_id)
     size = settings.get('max_size', 0)
     await query.message.edit_text(
-       f'<b><u>Max SIZE LIMIT</b></u><b>\n\nyou can set file Maximum size limit to forward\n\nfiles with less than `{size} MB` will forward</b>',
+       f'<b><u>מגבלת גודל מקסימלית</b></u><b>\n\nאתה יכול להגדיר את מגבלת הגודל המקסימלית לקובץ קדימה\n\nקבצים עם פחות מ `{size} MB` יעביר</b>',
        reply_markup=maxsize_button(size))
 
   elif type.startswith("update_size"):
@@ -334,7 +334,7 @@ async def settings_query(bot, query):
     await update_configs(user_id, 'min_size', size)
     i, limit = size_limit((await get_configs(user_id))['size_limit'])
     await query.message.edit_text(
-       f'<b><u>SIZE LIMIT</b></u><b>\n\nyou can set file Minimum size limit to forward\n\nfiles with greater than `{size} MB` will forward</b>',
+       f'<b><u>מגבלת גודל</b></u><b>\n\nאתה יכול להגדיר את מגבלת הגודל המינימלית לקובץ קדימה\n\nקבצים עם יותר מ- `{size} MB` יעביר</b>',
        reply_markup=size_button(size))
      
   elif type.startswith("maxupdate_size"):
@@ -344,7 +344,7 @@ async def settings_query(bot, query):
     await update_configs(user_id, 'max_size', size)
     i, limit = size_limit((await get_configs(user_id))['size_limit'])
     await query.message.edit_text(
-       f'<b><u>Max SIZE LIMIT</b></u><b>\n\nyou can set file Maximum size limit to forward\n\nfiles with less than `{size} MB` will forward</b>',
+       f'<b><u>מגבלת גודל מקסימלית</b></u><b>\n\nאתה יכול להגדיר את מגבלת הגודל המקסימלית לקובץ קדימה\n\nקבצים עם פחות מ `{size} MB` יעביר</b>',
        reply_markup=maxsize_button(size))
 
   elif type.startswith('update_limit'):
