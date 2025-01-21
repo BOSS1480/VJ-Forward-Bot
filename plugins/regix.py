@@ -28,15 +28,15 @@ async def pub_(bot, message):
     temp.CANCEL[user] = False
     frwd_id = message.data.split("_")[2]
     if temp.lock.get(user) and str(temp.lock.get(user))=="True":
-      return await message.answer("please wait until previous task complete", show_alert=True)
+      return await message.answer("אנא המתן עד להשלמת המשימה הקודמת", show_alert=True)
     sts = STS(frwd_id)
     if not sts.verify():
-      await message.answer("your are clicking on my old button", show_alert=True)
+      await message.answer("אתה לוחץ על הכפתור הישן שלי", show_alert=True)
       return await message.message.delete()
     i = sts.get(full=True)
     if i.TO in temp.IS_FRWD_CHAT:
-      return await message.answer("In Target chat a task is progressing. please wait until task complete", show_alert=True)
-    m = await msg_edit(message.message, "<code>verifying your data's, please wait.</code>")
+      return await message.answer("בצ'אט Target משימה מתקדמת.  אנא המתן עד להשלמת המשימה", show_alert=True)
+    m = await msg_edit(message.message, "<code>מאמת את הנתונים שלך, אנא המתן.</code>")
     _bot, caption, forward_tag, datas, protect, button = await sts.get_data(user)
     filter = datas['filters']
     max_size = datas['max_size']
@@ -58,7 +58,7 @@ async def pub_(bot, message):
     else:
         extensions = None
     if not _bot:
-      return await msg_edit(m, "<code>You didn't added any bot. Please add a bot using /settings !</code>", wait=True)
+      return await msg_edit(m, "<b>לא הוספת אף בוט.  נא הוסף בוט באמצעות הפקודה /settings !</b>", wait=True)
     if _bot['is_bot'] == True:
         data = _bot['token']
     else:
@@ -86,7 +86,7 @@ async def pub_(bot, message):
     if dburi is not None:
         connected, user_db = await connect_user_db(user, dburi, i.TO)
         if not connected:
-            await msg_edit(m, "<code>Cannot Connected Your db Errors Found Dup files Have Been Skipped after Restart</code>")
+            await msg_edit(m, "<code>לא ניתן להתחבר שגיאות ה-DB שלך נמצאו קבצי Dup דולג לאחר הפעלה מחדש</code>")
         else:
             user_have_db = True
     temp.forwardings += 1
