@@ -352,15 +352,15 @@ async def settings_query(bot, query):
     limit, sts = size_limit(limit)
     await update_configs(user_id, 'size_limit', limit) 
     await query.message.edit_text(
-       f'<b><u>SIZE LIMIT</b></u><b>\n\nyou can set file size limit to forward\n\nStatus: files with {sts} `{size} MB` will forward</b>',
+       f'<b><u>מגבלת גודל</b></u><b>\n\nאתה יכול להגדיר את מגבלת גודל הקובץ להעברה\n\nסטטוס: קבצים עם {sts} `{size} MB` יעביר</b>',
        reply_markup=size_button(int(size)))
 
   elif type == "add_extension":
     await query.message.delete() 
-    ext = await bot.ask(user_id, text="**please send your extensions (seperete by space)**")
+    ext = await bot.ask(user_id, text="**אנא שלח את ההרחבות שלך (מופרדים ברווח)**")
     if ext.text == '/cancel':
        return await ext.reply_text(
-                  "<b>process canceled</b>",
+                  "<b>התהליך בוטל!</b>",
                   reply_markup=InlineKeyboardMarkup(buttons))
     extensions = ext.text.split(" ")
     extension = (await get_configs(user_id))['extension']
@@ -382,16 +382,16 @@ async def settings_query(bot, query):
     btn = []
     text = ""
     if extensions:
-       text += "**🕹 Extensions**"
+       text += "**🕹 הרחבות**"
        for ext in extensions:
           text += f"\n<code>-{ext}</code>"
     else:
        text += "** No Extensions Here**"
-    btn.append([InlineKeyboardButton('✚ Add', 'settings#add_extension')])
-    btn.append([InlineKeyboardButton('Remove All', 'settings#rmve_all_extension')])
+    btn.append([InlineKeyboardButton('✚ הוסף', 'settings#add_extension')])
+    btn.append([InlineKeyboardButton('מחק הכל', 'settings#rmve_all_extension')])
     btn.append([InlineKeyboardButton('back', 'settings#extra')])
     await query.message.edit_text(
-        text=f"<b><u>EXTENSIONS</u></b>\n\n**Files with these extiontions will not forward**\n\n{text}",
+        text=f"<b><u>הרחבות</u></b>\n\n**קבצים עם כינויים אלה לא יועברו**\n\n{text}",
         reply_markup=InlineKeyboardMarkup(btn))
 
   elif type == "rmve_all_extension":
@@ -399,14 +399,14 @@ async def settings_query(bot, query):
     buttons = []
     buttons.append([InlineKeyboardButton('back', 
                       callback_data="settings#get_extension")])
-    await query.message.edit_text(text="**successfully deleted**",
+    await query.message.edit_text(text="**נמחק בהצלחה!**",
                                    reply_markup=InlineKeyboardMarkup(buttons))
   elif type == "add_keyword":
     await query.message.delete()
-    ask = await bot.ask(user_id, text="**please send the keywords (seperete by space Like:- English 1080p Hdrip)**")
+    ask = await bot.ask(user_id, text="**נא לשלוח את מילות המפתח (מופרדות ברווח כמו:- 1080p Hdrip)**")
     if ask.text == '/cancel':
        return await ask.reply_text(
-                  "<b>process canceled</b>",
+                  "<b>התהליך בוטל!</b>",
                   reply_markup=InlineKeyboardMarkup(buttons))
     keywords = ask.text.split(" ")
     keyword = (await get_configs(user_id))['keywords']
@@ -420,7 +420,7 @@ async def settings_query(bot, query):
     buttons.append([InlineKeyboardButton('back', 
                       callback_data="settings#get_keyword")])
     await ask.reply_text(
-        f"**successfully updated**",
+        f"**עודכן בהצלחה!**",
         reply_markup=InlineKeyboardMarkup(buttons))
 
   elif type == "get_keyword":
@@ -428,16 +428,16 @@ async def settings_query(bot, query):
     btn = []
     text = ""
     if keywords:
-       text += "**🔖 Keywords:**"
+       text += "**🔖 מילות מפתח:**"
        for key in keywords:
           text += f"\n<code>-{key}</code>"
     else:
-       text += "**You didn't Added Any Keywords**"
-    btn.append([InlineKeyboardButton('✚ Add', 'settings#add_keyword')])
-    btn.append([InlineKeyboardButton('Remove all', 'settings#rmve_all_keyword')])
+       text += "**לא הוספת מילות מפתח**"
+    btn.append([InlineKeyboardButton('✚ הוסף', 'settings#add_keyword')])
+    btn.append([InlineKeyboardButton('מחק הכל', 'settings#rmve_all_keyword')])
     btn.append([InlineKeyboardButton('Back', 'settings#extra')])
     await query.message.edit_text(
-        text=f"<b><u>Keywords</u></b>\n\n**Files with these keywords in file name only forwad**\n\n{text}",
+        text=f"<b><u>מילות מפתח</u></b>\n\n**קבצים עם מילות מפתח אלו בשם הקובץ יעברו רק**\n\n{text}",
         reply_markup=InlineKeyboardMarkup(btn))
 
   elif type == "rmve_all_keyword":
@@ -445,27 +445,24 @@ async def settings_query(bot, query):
     buttons = []
     buttons.append([InlineKeyboardButton('back', 
                       callback_data="settings#get_keyword")])
-    await query.message.edit_text(text="**successfully deleted All Keywords**",
+    await query.message.edit_text(text="**נמחק בהצלחה את כל מילות המפתח**",
                                    reply_markup=InlineKeyboardMarkup(buttons))
   elif type.startswith("alert"):
     alert = type.split('_')[1]
     await query.answer(alert, show_alert=True)
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 def extra_buttons():
    buttons = [[
-       InlineKeyboardButton('💾 Mɪɴ Sɪᴢᴇ Lɪᴍɪᴛ',
+       InlineKeyboardButton('💾 מגבלת גודל מינימלית',
                     callback_data=f'settings#file_size')
        ],[
-       InlineKeyboardButton('💾 Mᴀx Sɪᴢᴇ Lɪᴍɪᴛ',
+       InlineKeyboardButton('💾 מגבלת גודל מקסימלית',
                     callback_data=f'settings#maxfile_size ')
        ],[
-       InlineKeyboardButton('🚥 Keywords',
+       InlineKeyboardButton('🚥 מילות מפתח',
                     callback_data=f'settings#get_keyword'),
-       InlineKeyboardButton('🕹 Extensions',
+       InlineKeyboardButton('🕹 הרחבות',
                     callback_data=f'settings#get_extension')
        ],[
        InlineKeyboardButton('⫷ Bᴀᴄᴋ',
@@ -473,28 +470,25 @@ def extra_buttons():
        ]]
    return InlineKeyboardMarkup(buttons)
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 def main_buttons():
   buttons = [[
-       InlineKeyboardButton('🤖 Bᴏᴛs',
+       InlineKeyboardButton('🤖 בוטים',
                     callback_data=f'settings#bots'),
-       InlineKeyboardButton('🏷 Cʜᴀɴɴᴇʟs',
+       InlineKeyboardButton('🏷 ערוצים',
                     callback_data=f'settings#channels')
        ],[
-       InlineKeyboardButton('🖋️ Cᴀᴘᴛɪᴏɴ',
+       InlineKeyboardButton('🖋️ כותרת',
                     callback_data=f'settings#caption'),
-       InlineKeyboardButton('⏹ Bᴜᴛᴛᴏɴ',
+       InlineKeyboardButton('⏹ כפתורים',
                     callback_data=f'settings#button')
        ],[
-       InlineKeyboardButton('🕵‍♀ Fɪʟᴛᴇʀs 🕵‍♀',
+       InlineKeyboardButton('🕵‍♀ מסננים 🕵‍♀',
                     callback_data=f'settings#filters'),
-       InlineKeyboardButton('🗃 MᴏɴɢᴏDB',
+       InlineKeyboardButton('מסד נתונים 🗃️',
                     callback_data=f'settings#database')
        ],[
-       InlineKeyboardButton('Exᴛʀᴀ Sᴇᴛᴛɪɴɢs 🧪',
+       InlineKeyboardButton('הגדרות נוספות 🧪',
                     callback_data=f'settings#extra')
        ],[
        InlineKeyboardButton('⫷ Bᴀᴄᴋ',
@@ -502,9 +496,6 @@ def main_buttons():
        ]]
   return InlineKeyboardMarkup(buttons)
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 def size_limit(limit):
    if str(limit) == "None":
@@ -514,9 +505,6 @@ def size_limit(limit):
    else:
       return False, "less than"
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 def extract_btn(datas):
     i = 0
@@ -534,13 +522,10 @@ def extract_btn(datas):
             i += 1
     return btn 
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 def maxsize_button(size):
   buttons = [[
-       InlineKeyboardButton('💾 Max Size Limit',
+       InlineKeyboardButton('💾 מגבלת גודל מקסימלית',
                     callback_data=f'noth')
        ],[
        InlineKeyboardButton('+1',
@@ -573,13 +558,10 @@ def maxsize_button(size):
      ]]
   return InlineKeyboardMarkup(buttons)
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 def size_button(size):
   buttons = [[
-       InlineKeyboardButton('💾 Min Size Limit',
+       InlineKeyboardButton('💾 מגבלת גודל מינימלית',
                     callback_data=f'noth')
        ],[
        InlineKeyboardButton('+1',
@@ -612,40 +594,37 @@ def size_button(size):
      ]]
   return InlineKeyboardMarkup(buttons)
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 async def filters_buttons(user_id):
   filter = await get_configs(user_id)
   filters = filter['filters']
   buttons = [[
-       InlineKeyboardButton('🏷️ Forward tag',
+       InlineKeyboardButton('🏷️ תג הועבר',
                     callback_data=f'settings_#updatefilter-forward_tag-{filter["forward_tag"]}'),
        InlineKeyboardButton('✅' if filter['forward_tag'] else '❌',
                     callback_data=f'settings#updatefilter-forward_tag-{filter["forward_tag"]}')
        ],[
-       InlineKeyboardButton('🖍️ Texts',
+       InlineKeyboardButton('🖍️ טקסט',
                     callback_data=f'settings_#updatefilter-text-{filters["text"]}'),
        InlineKeyboardButton('✅' if filters['text'] else '❌',
                     callback_data=f'settings#updatefilter-text-{filters["text"]}')
        ],[
-       InlineKeyboardButton('📁 Documents',
+       InlineKeyboardButton('📁 קבצים',
                     callback_data=f'settings_#updatefilter-document-{filters["document"]}'),
        InlineKeyboardButton('✅' if filters['document'] else '❌',
                     callback_data=f'settings#updatefilter-document-{filters["document"]}')
        ],[
-       InlineKeyboardButton('🎞️ Videos',
+       InlineKeyboardButton('🎞️ וידאו',
                     callback_data=f'settings_#updatefilter-video-{filters["video"]}'),
        InlineKeyboardButton('✅' if filters['video'] else '❌',
                     callback_data=f'settings#updatefilter-video-{filters["video"]}')
        ],[
-       InlineKeyboardButton('📷 Photos',
+       InlineKeyboardButton('📷 תמונות',
                     callback_data=f'settings_#updatefilter-photo-{filters["photo"]}'),
        InlineKeyboardButton('✅' if filters['photo'] else '❌',
                     callback_data=f'settings#updatefilter-photo-{filters["photo"]}')
        ],[
-       InlineKeyboardButton('🎧 Audios',
+       InlineKeyboardButton('🎧 אודיו',
                     callback_data=f'settings_#updatefilter-audio-{filters["audio"]}'),
        InlineKeyboardButton('✅' if filters['audio'] else '❌',
                     callback_data=f'settings#updatefilter-audio-{filters["audio"]}')
@@ -657,41 +636,38 @@ async def filters_buttons(user_id):
        ]]
   return InlineKeyboardMarkup(buttons) 
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 async def next_filters_buttons(user_id):
   filter = await get_configs(user_id)
   filters = filter['filters']
   buttons = [[
        ],[
-       InlineKeyboardButton('🎤 Voices',
+       InlineKeyboardButton('🎤 קוליות',
                     callback_data=f'settings_#updatefilter-voice-{filters["voice"]}'),
        InlineKeyboardButton('✅' if filters['voice'] else '❌',
                     callback_data=f'settings#updatefilter-voice-{filters["voice"]}')
        ],[
-       InlineKeyboardButton('🎭 Animations',
+       InlineKeyboardButton('🎭 אנימציות',
                     callback_data=f'settings_#updatefilter-animation-{filters["animation"]}'),
        InlineKeyboardButton('✅' if filters['animation'] else '❌',
                     callback_data=f'settings#updatefilter-animation-{filters["animation"]}')
        ],[
-       InlineKeyboardButton('🃏 Stickers',
+       InlineKeyboardButton('🃏 סטיקרים',
                     callback_data=f'settings_#updatefilter-sticker-{filters["sticker"]}'),
        InlineKeyboardButton('✅' if filters['sticker'] else '❌',
                     callback_data=f'settings#updatefilter-sticker-{filters["sticker"]}')
        ],[
-       InlineKeyboardButton('▶️ Skip duplicate',
+       InlineKeyboardButton('▶️ דלג על כפילות',
                     callback_data=f'settings_#updatefilter-duplicate-{filter["duplicate"]}'),
        InlineKeyboardButton('✅' if filter['duplicate'] else '❌',
                     callback_data=f'settings#updatefilter-duplicate-{filter["duplicate"]}')
        ],[
-       InlineKeyboardButton('📊 Poll',
+       InlineKeyboardButton('📊 סקרים',
                     callback_data=f'settings_#updatefilter-poll-{filters["poll"]}'),
        InlineKeyboardButton('✅' if filters['poll'] else '❌',
                     callback_data=f'settings#updatefilter-poll-{filters["poll"]}')
        ],[
-       InlineKeyboardButton('🔒 Secure message',
+       InlineKeyboardButton('🔒 הודעות נעולות',
                     callback_data=f'settings_#updatefilter-protect-{filter["protect"]}'),
        InlineKeyboardButton('✅' if filter['protect'] else '❌',
                     callback_data=f'settings#updatefilter-protect-{filter["protect"]}')
@@ -702,7 +678,3 @@ async def next_filters_buttons(user_id):
                     callback_data="settings#main")
        ]]
   return InlineKeyboardMarkup(buttons) 
-
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
