@@ -2,28 +2,31 @@ import os
 from config import Config
 
 class  Script(object):
-  START_TXT = """<b>ʜɪ {}
+  START_TXT = """<b>היי {} 👋
   
-ɪ'ᴍ ᴀ ᴀᴅᴠᴀɴᴄᴇᴅ ꜰᴏʀᴡᴀʀᴅ ʙᴏᴛ
-ɪ ᴄᴀɴ ꜰᴏʀᴡᴀʀᴅ ᴀʟʟ ᴍᴇssᴀɢᴇ ꜰʀᴏᴍ ᴏɴᴇ ᴄʜᴀɴɴᴇʟ ᴛᴏ ᴀɴᴏᴛʜᴇʀ ᴄʜᴀɴɴᴇʟ</b>
+אני בוט מתקדם להעברת הודעות.
+אני יכול להעביר הודעות מערוץ אחד לערוץ אחר.</b>
 
-**ᴄʟɪᴄᴋ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ᴛᴏ ᴋɴᴏᴡ ᴍᴏʀᴇ ᴀʙᴏᴜᴛ ᴍᴇ**"""
-  HELP_TXT = """<b><u>🔆 Help</b></u>
+**לחץ על הכפתור עזרה כדי לקבל פרטים נוספים עליי🔥**"""
+  HELP_TXT = """<b><u>🔆 עזרה</b></u>
 
-<u>**📚 Available commands:**</u>
-<b>⏣ __/start - check I'm alive__ 
-⏣ __/forward - forward messages__
-⏣ __/settings - configure your settings__
-⏣ __ /unequify - delete duplicate media messages in chats__
-⏣ __ /stop - stop your ongoing tasks__
-⏣ __ /reset - reset your settings__</b>
+<b><u>📚 פקודות זמינות:</u></b>
+<b>⏣ </b>/start<b><i> - </i>בדוק שאני בחיים</b><b><i>
+⏣ </i></b>/forward<b><i> - </i>העבר הודעות</b><b><i>
+⏣ </i></b>/unequify<b><i> - </i>מחק הודעות כפולות בערוצים</b><b><i>
+⏣ </i></b>/settings<b><i> - </i>הגדר את ההגדרות שלך</b><b><i>
+⏣ </i></b>/reset<b><i> - </i>אפס את ההגדרות שלך</b><i>
 
-<b><u>💢 Features:</b></u>
-<b>► __Forward message from public channel to your channel without admin permission. if the channel is private need admin permission, if you can't give admin permission then use userbot, but in userbot there is a chance to get your account ban so use fake account__
-► __custom caption__
-► __custom button__
-► __skip duplicate messages__
-► __filter type of messages__</b>
+
+</i><i><b><u>💢 תכונות:</u></b>
+◄ העבר הודעה מערוץ ציבורי לערוץ שלך ללא אישור מנהל. אם הערוץ פרטי צריך הרשאת מנהל
+◄ העבר הודעה מערוץ פרטי לערוץ שלך באמצעות userbot (המשתמש חייב להיות חבר שם)
+◄ כיתוב מותאם אישית
+◄ כפתור מותאם אישית
+◄ תמיכה בצ'אטים מוגבלים
+◄ דלג על הודעות כפולות
+◄ סוג מסנן של הודעות
+► דלג על הודעות המבוססות על הרחבות ומילות מפתח וגודל</i>
 """
   
   HOW_USE_TXT = """<b><u>⚠️ Before Forwarding:</b></u>
