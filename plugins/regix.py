@@ -170,9 +170,6 @@ async def pub_(bot, message):
             await user_db.close()
         await stop(client, user)
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 async def copy(user, bot, msg, m, sts):
    try:                               
@@ -200,9 +197,6 @@ async def copy(user, bot, msg, m, sts):
      print(e)
      sts.add('deleted')
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 async def forward(user, bot, msg, m, sts, protect):
    try:                             
@@ -217,9 +211,6 @@ async def forward(user, bot, msg, m, sts, protect):
      await edit(user, m, 'ᴘʀᴏɢʀᴇssɪɴɢ', 5, sts)
      await forward(bot, msg, m, sts, protect)
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 async def msg_edit(msg, text, button=None, wait=None):
     try:
@@ -231,9 +222,6 @@ async def msg_edit(msg, text, button=None, wait=None):
            await asyncio.sleep(e.value)
            return await msg_edit(msg, text, button, wait)
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 async def edit(user, msg, title, status, sts):
    i = sts.get(full=True)
@@ -254,28 +242,22 @@ async def edit(user, msg, title, status, sts):
    estimated_total_time = TimeFormatter(milliseconds=estimated_total_time)
    estimated_total_time = estimated_total_time if estimated_total_time != '' else '0 s'
    if status in ["cancelled", "completed"]:
-      button.append([InlineKeyboardButton('• ᴄᴏᴍᴘʟᴇᴛᴇᴅ ​•', url='https://t.me/VJ_BOTZ')])
+      button.append([InlineKeyboardButton('• ערוץ עדכונים ​•', url='https://t.me/bot_sratim_sdarot')])
    else:
-      button.append([InlineKeyboardButton('• ᴄᴀɴᴄᴇʟ', 'terminate_frwd')])
+      button.append([InlineKeyboardButton('• ביטול', 'terminate_frwd')])
    await msg_edit(msg, text, InlineKeyboardMarkup(button))
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 async def is_cancelled(client, user, msg, sts):
    if temp.CANCEL.get(user)==True:
       if sts.TO in temp.IS_FRWD_CHAT:
          temp.IS_FRWD_CHAT.remove(sts.TO)
       await edit(user, msg, 'ᴄᴀɴᴄᴇʟʟᴇᴅ', "cancelled", sts)
-      await send(client, user, "<b>❌ ғᴏʀᴡᴀᴅɪɴɢ ᴄᴀɴᴄᴇʟʟᴇᴅ</b>")
+      await send(client, user, "<b>❌ העברה בוטלה</b>")
       await stop(client, user)
       return True 
    return False 
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 async def stop(client, user):
    try:
@@ -286,9 +268,6 @@ async def stop(client, user):
    temp.forwardings -= 1
    temp.lock[user] = False 
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 async def send(bot, user, text):
    try:
@@ -296,9 +275,6 @@ async def send(bot, user, text):
    except:
       pass 
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 def custom_caption(msg, caption):
   if msg.media:
@@ -315,9 +291,6 @@ def custom_caption(msg, caption):
         return fcaption
   return None
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 def get_size(size):
   units = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB"]
@@ -328,9 +301,6 @@ def get_size(size):
      size /= 1024.0
   return "%.2f %s" % (size, units[i]) 
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 async def keyword_filter(keywords, file_name):
     if keywords is None:
@@ -340,9 +310,6 @@ async def keyword_filter(keywords, file_name):
     else:
         return True
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 async def extension_filter(extensions, file_name):
     if extensions is None:
@@ -352,9 +319,6 @@ async def extension_filter(extensions, file_name):
     else:
         return True
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 async def size_filter(max_size, min_size, file_size):
     file_size = file_size / 1024 / 1024
@@ -369,9 +333,6 @@ async def size_filter(max_size, min_size, file_size):
     else:
         return False
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 def media(msg):
   if msg.media:
@@ -380,9 +341,6 @@ def media(msg):
         return getattr(media, 'file_id', None)
   return None 
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 def TimeFormatter(milliseconds: int) -> str:
     seconds, milliseconds = divmod(int(milliseconds), 1000)
@@ -396,16 +354,10 @@ def TimeFormatter(milliseconds: int) -> str:
         ((str(milliseconds) + "ms, ") if milliseconds else "")
     return tmp[:-2]
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 def retry_btn(id):
-    return InlineKeyboardMarkup([[InlineKeyboardButton('♻️ RETRY ♻️', f"start_public_{id}")]])
+    return InlineKeyboardMarkup([[InlineKeyboardButton('♻️ רענן ♻️', f"start_public_{id}")]])
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 @Client.on_callback_query(filters.regex(r'^terminate_frwd$'))
 async def terminate_frwding(bot, m):
@@ -414,9 +366,6 @@ async def terminate_frwding(bot, m):
     temp.CANCEL[user_id] = True 
     await m.answer("Forwarding cancelled !", show_alert=True)
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 @Client.on_callback_query(filters.regex(r'^fwrdstatus'))
 async def status_msg(bot, msg):
@@ -435,18 +384,12 @@ async def status_msg(bot, msg):
     est_time = est_time if (est_time != '' or status not in ['completed', 'cancelled']) else '0 s'
     return await msg.answer(PROGRESS.format(percentage, fetched, forwarded, remaining, status, time_to_comple, uptime), show_alert=True)
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 @Client.on_callback_query(filters.regex(r'^close_btn$'))
 async def close(bot, update):
     await update.answer()
     await update.message.delete()
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 @Client.on_message(filters.private & filters.command(['stop']))
 async def stop_forward(client, message):
@@ -454,17 +397,14 @@ async def stop_forward(client, message):
     sts = await message.reply('<code>Stoping...</code>')
     await asyncio.sleep(0.5)
     if not await db.is_forwad_exit(message.from_user.id):
-        return await sts.edit('**No Ongoing Forwards To Cancel**')
+        return await sts.edit('**אין העברות מתמשכות לביטול**')
     temp.lock[user_id] = False
     temp.CANCEL[user_id] = True
     mst = await db.get_forward_details(user_id)
     msg = await client.get_messages(user_id, mst['msg_id'])
     link = f"tg://openmessage?user_id={6648261085}&message_id={mst['msg_id']}"
-    await sts.edit(f"<b>Successfully Canceled </b>", disable_web_page_preview=True)
+    await sts.edit(f"<b>בוטל בהצלחה!</b>", disable_web_page_preview=True)
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 async def restart_pending_forwads(bot, user):
     user = user['user_id']
@@ -509,7 +449,7 @@ async def restart_pending_forwads(bot, user):
        else:
            extensions = None
        if not _bot:
-          return await msg_edit(m, "<code>You didn't added any bot. Please add a bot using /settings !</code>", wait=True)
+          return await msg_edit(m, "<code>לא הוספת אף בוט. אנא הוסף בוט באמצעות הפקודה /settings !</code>", wait=True)
        if _bot['is_bot'] == True:
           data = _bot['token']
        else:
@@ -521,19 +461,19 @@ async def restart_pending_forwads(bot, user):
        except Exception as e:  
           return await m.edit(e)
        try:
-          await msg_edit(m, "<code>processing..</code>")
+          await msg_edit(m, "<code>מעבד...</code>")
        except:
           return await db.rmve_frwd(user)
        try: 
           await client.get_messages(sts.get("FROM"), sts.get("limit"))
        except:
-          await msg_edit(m, f"**Source chat may be a private channel / group. Use userbot (user must be member over there) or  if Make Your [Bot](t.me/{_bot['username']}) an admin over there**", retry_btn(firwd_id), True)
+          await msg_edit(m, f"**צ'אט מקור עשוי להיות ערוץ/קבוצה פרטיים. השתמש ב-userbot (המשתמש חייב להיות חבר שם) או אם הפוך את ה[בוט](t.me/{_bot['username']}) שלך למנהל שם.**", retry_btn(firwd_id), True)
           return await stop(client, user)
        try:
           k = await client.send_message(i.TO, "Testing")
           await k.delete()
        except:
-          await msg_edit(m, f"**Please Make Your [UserBot / Bot](t.me/{_bot['username']}) Admin In Target Channel With Full Permissions**", retry_btn(forward_id), True)
+          await msg_edit(m, f"**אנא הפוך את ה[בוט / יוזרבוט](t.me/{_bot['username']}) כמנהל בערוץ היעד שלך עם הרשאות מלאות**", retry_btn(forward_id), True)
           return await stop(client, user)
     except:
        return await db.rmve_frwd(user)
@@ -542,7 +482,7 @@ async def restart_pending_forwads(bot, user):
     if dburi is not None:
         connected, user_db = await connect_user_db(user, dburi, i.TO)
         if not connected:
-            await msg_edit(m, "<code>Cannot Connected Your db Errors Found Dup files Have Been Skipped after Restart</code>")
+            await msg_edit(m, "<code>לא ניתן להתחבר שגיאות ה-DB שלך נמצאו קבצי Dup דולג לאחר הפעלה מחדש</code>")
         else:
             user_have_db = True
     try:
@@ -624,16 +564,13 @@ async def restart_pending_forwads(bot, user):
             temp.IS_FRWD_CHAT.remove(sts.TO)
             return await stop(client, user)
         temp.IS_FRWD_CHAT.remove(sts.TO)
-        await send(client, user, "<b>🎉 ғᴏʀᴡᴀᴅɪɴɢ ᴄᴏᴍᴘʟᴇᴛᴇᴅ</b>")
+        await send(client, user, "<b>🎉 ההעברה הושלמה</b>")
         if user_have_db:
             await user_db.drop_all()
             await user_db.close()
         await edit(user, m, 'ᴄᴏᴍᴘʟᴇᴛᴇᴅ', "completed", sts) 
         await stop(client, user)
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 async def store_vars(user_id):
     settings = await db.get_forward_details(user_id)
@@ -643,9 +580,6 @@ async def store_vars(user_id):
     STS(id=forward_id).store(settings['chat_id'], settings['toid'], settings['skip'], settings['limit'])
     return forward_id
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 async def restart_forwards(client):
     users = await db.get_all_frwd()
@@ -659,9 +593,7 @@ async def restart_forwards(client):
     await asyncio.gather(*tasks)
     print('Done')
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
+
 
 async def update_forward(user_id, chat_id, start_time, toid, last_id, limit, forward_id, msg_id, fetched, total, duplicate, deleted, skip, filterd):
     details = {
@@ -682,9 +614,6 @@ async def update_forward(user_id, chat_id, start_time, toid, last_id, limit, for
     }
     await db.update_forward(user_id, details)
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 async def get_bot_uptime(start_time):
     # Calculate the uptime in seconds
@@ -705,9 +634,6 @@ async def get_bot_uptime(start_time):
     uptime_string += f"{uptime_seconds % 60}s"
     return uptime_string  
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 async def complete_time(total_files, files_per_minute=30):
     minutes_required = total_files / files_per_minute
@@ -729,7 +655,3 @@ async def complete_time(total_files, files_per_minute=30):
     if seconds > 0:
         time_format += f"{int(seconds)}s"
     return time_format
-
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
