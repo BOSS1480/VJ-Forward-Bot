@@ -29,28 +29,25 @@ class  Script(object):
 ► דלג על הודעות המבוססות על הרחבות ומילות מפתח וגודל</i>
 """
   
-  HOW_USE_TXT = """<b><u>⚠️ Before Forwarding:</b></u>
-<b>► __add a bot or userbot__
-► __add atleast one to channel__ `(your bot/userbot must be admin in there)`
-► __You can add chats or bots by using /settings__
-► __if the **From Channel** is private your userbot must be member in there or your bot must need admin permission in there also__
-► __Then use /forward to forward messages__
-
-► ʜᴏᴡ ᴛᴏ ᴜsᴇ ᴍᴇ [ᴛᴜᴛᴏʀɪᴀʟ ᴠɪᴅᴇᴏ](https://youtu.be/wO1FE-lf35I)</b>"""
+  HOW_USE_TXT = """<b><i><u>⚠️ לפני העברה:</u></i></b>
   
-  ABOUT_TXT = """<b>
-╔════❰ ғᴏʀᴡᴀʀᴅ ʙᴏᴛ ❱═❍⊱❁۪۪
+<i>◄ הוסף בוט או משתמשבוט
+◄ הוסף לפחות אחד לערוץ (הבוט/המשתמשבוט שלך חייב להיות מנהל שם)
+◄ אתה יכול להוסיף צ'אטים או בוטים באמצעות </i><i>/settings</i><i>
+◄ אם ערוץ מאת הוא פרטי המשתמש הבוט שלך חייב להיות חבר שם או שהבוט שלך חייב להזדקק להרשאת מנהל גם שם
+◄ לאחר מכן השתמש </i><i>/forward</i><i> כדי להעביר הודעות</i>"""
+  
+  ABOUT_TXT = """<b>╔════❰ ғᴏʀᴡᴀʀᴅ ʙᴏᴛ ❱═❍⊱❁۪۪
 ║╭━━━━━━━━━━━━━━━➣
-║┣⪼📃ʙᴏᴛ : [Fᴏʀᴡᴀᴅ Bᴏᴛ](https://t.me/VJForwardBot)
-║┣⪼👦Cʀᴇᴀᴛᴏʀ : [Kɪɴɢ VJ 👑](https://t.me/kingvj01)
-║┣⪼🤖Uᴘᴅᴀᴛᴇ : [VJ Bᴏᴛᴢ](https://t.me/vj_botz)
+║┣⪼📃ʙᴏᴛ : </b><a href="https://t.me/The_Auto_Forward_RoBot"><b>Fᴏʀᴡᴀᴅ Bᴏᴛ</b></a><b>
+║┣⪼👦Cʀᴇᴀᴛᴏʀ : </b><a href="https://t.me/The_Joker121"><b>𝑻𝒉𝒆 𝑱𝒐𝒌𝒆𝒓🃏</b></a><b>
+║┣⪼🤖Uᴘᴅᴀᴛᴇ : </b><a href="https://t.me/bot_sratim_sdarot"><b>בוטים 🇮🇱</b></a><b>
 ║┣⪼📡Hᴏsᴛᴇᴅ ᴏɴ : Sᴜᴘᴇʀ Fᴀsᴛ
 ║┣⪼🗣️Lᴀɴɢᴜᴀɢᴇ : Pʏᴛʜᴏɴ3
 ║┣⪼📚Lɪʙʀᴀʀʏ : Pʏʀᴏɢʀᴀᴍ Gᴀᴛʜᴇʀ 2.11.0 
 ║┣⪼🗒️Vᴇʀsɪᴏɴ : 0.18.3
 ║╰━━━━━━━━━━━━━━━➣
-╚══════════════════❍⊱❁۪۪
-</b>"""
+╚══════════════════❍⊱❁۪۪</b>"""
   STATUS_TXT = """
 ╔════❰ ʙᴏᴛ sᴛᴀᴛᴜs  ❱═❍⊱❁۪۪
 ║╭━━━━━━━━━━━━━━━➣
@@ -65,12 +62,12 @@ class  Script(object):
 ║╰━━━━━━━━━━━━━━━➣
 ╚══════════════════❍⊱❁۪۪
 """
-  FROM_MSG = "<b>❪ SET SOURCE CHAT ❫\n\nForward the last message or last message link of source chat.\n/cancel - cancel this process</b>"
-  TO_MSG = "<b>❪ CHOOSE TARGET CHAT ❫\n\nChoose your target chat from the given buttons.\n/cancel - Cancel this process</b>"
-  SKIP_MSG = "<b>❪ SET MESSAGE SKIPING NUMBER ❫</b>\n\n<b>Skip the message as much as you enter the number and the rest of the message will be forwarded\nDefault Skip Number =</b> <code>0</code>\n<code>eg: You enter 0 = 0 message skiped\n You enter 5 = 5 message skiped</code>\n/cancel <b>- cancel this process</b>"
-  CANCEL = "<b>Process Cancelled Succefully !</b>"
-  BOT_DETAILS = "<b><u>📄 BOT DETAILS</b></u>\n\n<b>➣ NAME:</b> <code>{}</code>\n<b>➣ BOT ID:</b> <code>{}</code>\n<b>➣ USERNAME:</b> @{}"
-  USER_DETAILS = "<b><u>📄 USERBOT DETAILS</b></u>\n\n<b>➣ NAME:</b> <code>{}</code>\n<b>➣ USER ID:</b> <code>{}</code>\n<b>➣ USERNAME:</b> @{}"  
+  FROM_MSG = "<b>❪ הגדר צ'אט מקור ❫\n\nהעבר את ההודעה האחרונה או קישור ההודעה האחרונה של צ'אט מקור.\n/cancel - כדי לבטל תהליך שלח</b>"
+  TO_MSG = "<b>❪ בחר צ'אט יעד ❫\n\nבחר את צ'אט היעד שלך מתוך הכפתורים הנתונים.\n/cancel - ביטול תהליך זה</b>"
+  SKIP_MSG = "❪ הגדר מספר דילוג על הודעה ❫\n\nדלג על ההודעה ככל שתזין את המספר ושאר ההודעה תועבר.\nמספר דילוג כברירת מחדל = 0.\n\nלדוגמא: את בוחר 0 הבוט מדלג על 0 הודעות ראשונות ואז מתחיל להעביר משם.\nאתה בוחר 5 הבוט מדלג על 5 הודעות ראשונות ואז מתחיל להעביר משם...\nלביטול התהליך שלח את הפקודה - /cancel"
+  CANCEL = "<b>התהליך בוטל בהצלחה!</b>"
+  BOT_DETAILS = "<b><u>📄 פרטי בוט</b></u>\n\n<b>➣ שם:</b> <code>{}</code>\n<b>➣ מזהה בוט:</b> <code>{}</code>\n<b>➣ שם משתמש:</b> @{}"
+  USER_DETAILS = "<b><u>📄 פרטי משתמש בוט</b></u>\n\n<b>➣ שם:</b> <code>{}</code>\n<b>➣ מזהה משתמש:</b> <code>{}</code>\n<b>➣ שם משתמש:</b> @{}"  
          
   TEXT = """
 ╔════❰ ғᴏʀᴡᴀʀᴅ sᴛᴀᴛᴜs  ❱═❍⊱❁۪۪
@@ -102,17 +99,17 @@ class  Script(object):
 ║╰━━━━━━━━━━━━━━━➣
 ╚════❰ {} ❱══❍⊱❁۪۪
 """
-  DOUBLE_CHECK = """<b><u>DOUBLE CHECKING ⚠️</b></u>
-<code>Before forwarding the messages Click the Yes button only after checking the following</code>
+  DOUBLE_CHECK = """<b><u>בדיקה כפולה ⚠️</b></u>
+<code>לפני העברת ההודעות לחץ על כפתור 'כן' רק לאחר בדיקה של הדברים הבאים</code>
 
-<b>★ YOUR BOT:</b> [{botname}](t.me/{botuname})
-<b>★ FROM CHANNEL:</b> `{from_chat}`
-<b>★ TO CHANNEL:</b> `{to_chat}`
-<b>★ SKIP MESSAGES:</b> `{skip}`
+<b>★ הבוט שלך:</b> [{botname}](t.me/{botuname})
+<b>★ מהערוץ:</b> `{from_chat}`
+<b>★ לערוץ:</b> `{to_chat}`
+<b>★ דלג על הודעות:</b> `{skip}`
 
-<i>° [{botname}](t.me/{botuname}) must be admin in **TARGET CHAT**</i> (`{to_chat}`)
-<i>° If the **SOURCE CHAT** is private your userbot must be member or your bot must be admin in there also</b></i>
+<i>° [{botname}](t.me/{botuname}) חייב להיות מנהל ב**צ'אט יעד**</i> (`{to_chat}`)
+<i>° אם ה-**צ'אט מקור** הוא פרטי, ה-userbot שלך חייב להיות חבר שם או שהבוט שלך חייב להיות מנהל גם שם</b></i>
 
-<b>If the above is checked then the yes button can be clicked</b>"""
-  
-SETTINGS_TXT = """<b>change your settings as your wish</b>"""
+<b>אם הדברים הנ"ל נבדקו, אז ניתן ללחוץ על כפתור 'כן'</b>"""
+    
+ SETTINGS_TXT = """<b>שנה את ההגדרות שלך כפי שתרצה</b>"""
