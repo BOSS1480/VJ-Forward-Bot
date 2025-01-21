@@ -1,7 +1,3 @@
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
-
 import asyncio 
 from database import Db, db
 from script import Script
@@ -12,20 +8,14 @@ from .db import connect_user_db
 
 CLIENT = CLIENT()
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 @Client.on_message(filters.command('settings'))
 async def settings(client, message):
    await message.reply_text(
-     "<b>Hᴇʀᴇ Is Tʜᴇ Sᴇᴛᴛɪɴɢs Pᴀɴᴇʟ⚙\n\nᴄʜᴀɴɢᴇ ʏᴏᴜʀ sᴇᴛᴛɪɴɢs ᴀs ʏᴏᴜʀ ᴡɪsʜ 👇</b>",
+     "<b>כאן לוח ההגדרות ⚙️\n\nשנה את ההגדרות שלך כרצונך 👇</b>",
      reply_markup=main_buttons()
      )
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 @Client.on_callback_query(filters.regex(r'^settings'))
 async def settings_query(bot, query):
@@ -34,11 +24,11 @@ async def settings_query(bot, query):
   buttons = [[InlineKeyboardButton('back', callback_data="settings#main")]]
   if type=="main":
      await query.message.edit_text(
-       "<b>Hᴇʀᴇ Is Tʜᴇ Sᴇᴛᴛɪɴɢs Pᴀɴᴇʟ⚙\n\nᴄʜᴀɴɢᴇ ʏᴏᴜʀ sᴇᴛᴛɪɴɢs ᴀs ʏᴏᴜʀ ᴡɪsʜ 👇</b>",
+       "<b>כאן לוח ההגדרות ⚙️\n\nשנה את ההגדרות שלך כרצונך 👇</b>",
        reply_markup=main_buttons())
   elif type=="extra":
        await query.message.edit_text(
-         "<b>Hᴇʀᴇ Is Tʜᴇ Exᴛʀᴀ Sᴇᴛᴛɪɴɢs Pᴀɴᴇʟ⚙</b>",
+         "<b>הנה פאנל הגדרות נוסף ⚙\n\nשנה את ההגדרות שלך כרצונך 👇</b>",
          reply_markup=extra_buttons())
   elif type=="bots":
      buttons = [] 
@@ -48,18 +38,18 @@ async def settings_query(bot, query):
         buttons.append([InlineKeyboardButton(_bot['name'],
                          callback_data=f"settings#editbot")])
      else:
-        buttons.append([InlineKeyboardButton('✚ Add bot ✚', 
+        buttons.append([InlineKeyboardButton('✚ הוסף בוט ✚', 
                          callback_data="settings#addbot")])
      if usr_bot is not None:
         buttons.append([InlineKeyboardButton(usr_bot['name'],
                          callback_data=f"settings#edituserbot")])
      else:
-        buttons.append([InlineKeyboardButton('✚ Add User bot ✚', 
+        buttons.append([InlineKeyboardButton('✚ הוסף יוזרבוט ✚', 
                          callback_data="settings#adduserbot")])
-     buttons.append([InlineKeyboardButton('back', 
+     buttons.append([InlineKeyboardButton('חזרה', 
                       callback_data="settings#main")])
      await query.message.edit_text(
-       "<b><u>My Bots</b></u>\n\n<b>You can manage your bots in here</b>",
+       "<b><u>הבוטים שלי:</b></u>\n\n<b>אתה יכול לנהל את הבוטים שלך כאן</b>",
        reply_markup=InlineKeyboardMarkup(buttons))
 
   elif type=="addbot":
@@ -67,7 +57,7 @@ async def settings_query(bot, query):
      bot = await CLIENT.add_bot(bot, query)
      if bot != True: return
      await query.message.reply_text(
-        "<b>bot token successfully added to db</b>",
+        "<b>אסימון הבוט נוסף בהצלחה ל-db</b>",
         reply_markup=InlineKeyboardMarkup(buttons))
 
   elif type=="adduserbot":
@@ -75,7 +65,7 @@ async def settings_query(bot, query):
      user = await CLIENT.add_session(bot, query)
      if user != True: return
      await query.message.reply_text(
-        "<b>session successfully added to db</b>",
+        "<b>ההפעלה נוספה בהצלחה ל-db</b>",
         reply_markup=InlineKeyboardMarkup(buttons))
 
   elif type=="channels":
@@ -84,23 +74,23 @@ async def settings_query(bot, query):
      for channel in channels:
         buttons.append([InlineKeyboardButton(f"{channel['title']}",
                          callback_data=f"settings#editchannels_{channel['chat_id']}")])
-     buttons.append([InlineKeyboardButton('✚ Add Channel ✚', 
+     buttons.append([InlineKeyboardButton('✚ הוסף ערוץ ✚', 
                       callback_data="settings#addchannel")])
-     buttons.append([InlineKeyboardButton('back', 
+     buttons.append([InlineKeyboardButton('חזרנ', 
                       callback_data="settings#main")])
      await query.message.edit_text( 
-       "<b><u>My Channels</b></u>\n\n<b>you can manage your target chats in here</b>",
+       "<b><u>הערוצים שלי:</b></u>\n\n<b>אתה יכול לנהל את הצ'אטים היעד שלך כאן</b>",
        reply_markup=InlineKeyboardMarkup(buttons))
 
   elif type=="addchannel":  
      await query.message.delete()
-     chat_ids = await bot.ask(chat_id=query.from_user.id, text="<b>❪ SET TARGET CHAT ❫\n\nForward a message from Your target chat\n/cancel - cancel this process</b>")
+     chat_ids = await bot.ask(chat_id=query.from_user.id, text="<b>❪ הגדר צ'אט יעד ❫\n\nהעבר הודעה מצ'אט היעד שלך\n/cancel - לבטל את התהליך הזה</b>")
      if chat_ids.text=="/cancel":
         return await chat_ids.reply_text(
-                  "<b>process canceled</b>",
+                  "<b>התהליך בוטל</b>",
                   reply_markup=InlineKeyboardMarkup(buttons))
      elif not chat_ids.forward_date:
-        return await chat_ids.reply("**This is not a forward message**")
+        return await chat_ids.reply("**זו לא הודעה עם תג הועבר**")
      else:
         chat_id = chat_ids.forward_from_chat.id
         title = chat_ids.forward_from_chat.title
@@ -108,15 +98,15 @@ async def settings_query(bot, query):
         username = "@" + username if username else "private"
      chat = await db.add_channel(user_id, chat_id, title, username)
      await query.message.reply_text(
-        "<b>Successfully updated</b>" if chat else "<b>This channel already added</b>",
+        "<b>Successfully updated</b>" if chat else "<b>הערוץ הזה כבר נוסף!</b>",
         reply_markup=InlineKeyboardMarkup(buttons))
 
   elif type=="editbot": 
      bot = await db.get_bot(user_id)
      TEXT = Script.BOT_DETAILS if bot['is_bot'] else Script.USER_DETAILS
-     buttons = [[InlineKeyboardButton('❌ Remove ❌', callback_data=f"settings#removebot")
+     buttons = [[InlineKeyboardButton('❌ מחק ❌', callback_data=f"settings#removebot")
                ],
-               [InlineKeyboardButton('back', callback_data="settings#bots")]]
+               [InlineKeyboardButton('חזרה', callback_data="settings#bots")]]
      await query.message.edit_text(
         TEXT.format(bot['name'], bot['id'], bot['username']),
         reply_markup=InlineKeyboardMarkup(buttons))
@@ -124,9 +114,9 @@ async def settings_query(bot, query):
   elif type=="edituserbot": 
      bot = await db.get_userbot(user_id)
      TEXT = Script.USER_DETAILS
-     buttons = [[InlineKeyboardButton('❌ Remove ❌', callback_data=f"settings#removeuserbot")
+     buttons = [[InlineKeyboardButton('❌ מחק ❌', callback_data=f"settings#removeuserbot")
                ],
-               [InlineKeyboardButton('back', callback_data="settings#bots")]]
+               [InlineKeyboardButton('חזרה', callback_data="settings#bots")]]
      await query.message.edit_text(
         TEXT.format(bot['name'], bot['id'], bot['username']),
         reply_markup=InlineKeyboardMarkup(buttons))
@@ -134,7 +124,7 @@ async def settings_query(bot, query):
   elif type=="removebot":
      await db.remove_bot(user_id)
      await query.message.edit_text(
-        "<b>successfully updated</b>",
+        "<b>עודכן בהצלחה!</b>",
         reply_markup=InlineKeyboardMarkup(buttons))
      
   elif type=="removeuserbot":
