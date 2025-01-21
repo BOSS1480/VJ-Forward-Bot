@@ -1,7 +1,3 @@
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
-
 import os
 import sys 
 import math
@@ -20,18 +16,11 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQ
 from .db import connect_user_db
 from pyrogram.types import Message
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
-
 CLIENT = CLIENT()
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 TEXT = Script.TEXT
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 @Client.on_callback_query(filters.regex(r'^start_public'))
 async def pub_(bot, message):
@@ -80,17 +69,17 @@ async def pub_(bot, message):
       await client.start()
     except Exception as e:  
       return await m.edit(e)
-    await msg_edit(m, "<code>processing..</code>")
+    await msg_edit(m, "<b>מעבד...</b>")
     try: 
        await client.get_messages(sts.get("FROM"), sts.get("limit"))
     except:
-       await msg_edit(m, f"**Source chat may be a private channel / group. Use userbot (user must be member over there) or  if Make Your [Bot](t.me/{_bot['username']}) an admin over there**", retry_btn(frwd_id), True)
+       await msg_edit(m, f"**צ'אט מקור עשוי להיות ערוץ/קבוצה פרטיים. השתמש ב-userbot (המשתמש חייב להיות חבר שם) או אם הפוך את [הבוט](t.me/{_bot['username']}) שלך למנהל שם.‌‌**", retry_btn(frwd_id), True)
        return await stop(client, user)
     try:
        k = await client.send_message(i.TO, "Testing")
        await k.delete()
     except:
-       await msg_edit(m, f"**Please Make Your [UserBot / Bot](t.me/{_bot['username']}) Admin In Target Channel With Full Permissions**", retry_btn(frwd_id), True)
+       await msg_edit(m, f"**אנא הפוך את [הבוט / יוזרבוט](t.me/{_bot['username']}) שלך למנהל מערכת לערוץ היעד עם הרשאות מלאות**‌‌", retry_btn(frwd_id), True)
        return await stop(client, user)
     user_have_db = False
     dburi = datas['db_uri']
