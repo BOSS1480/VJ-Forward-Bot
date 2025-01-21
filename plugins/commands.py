@@ -1,7 +1,3 @@
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
-
 import os
 import sys
 import asyncio 
@@ -102,7 +98,7 @@ async def status(bot, query):
     upt = await get_bot_uptime(START_TIME)
     buttons = [[
         InlineKeyboardButton('• חזרה', callback_data='help'),
-        InlineKeyboardButton('סטטיסטיקות מערכת ✨️', callback_data='systm_sts'),
+        InlineKeyboardButton('סטטוס בוט', callback_data='systm_sts'),
     ]]
     reply_markup = InlineKeyboardMarkup(buttons)
     await query.message.edit_text(
