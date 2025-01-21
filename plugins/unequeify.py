@@ -1,7 +1,3 @@
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
-
 import re, asyncio
 from database import Db, db
 from config import temp
@@ -13,23 +9,15 @@ from pyrogram import Client, filters, enums
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 import struct
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
-
 CLIENT = CLIENT()
 COMPLETED_BTN = InlineKeyboardMarkup(
   [[
-    InlineKeyboardButton('💟 sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ 💟', url='https://t.me/VJ_Bot_Disscussion')
+    InlineKeyboardButton('💟 קבוצת תמיכה 💟', url='https://t.me/+qn1oVKhkA3RlZmQ0')
   ],[
-    InlineKeyboardButton('💠 ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ 💠', url='https://t.me/vj_botz')
+    InlineKeyboardButton('💠 ערוץ עדכונים 💠', url='https://t.me/bot_sratim_sdarot')
   ]]
 )
-CANCEL_BTN = InlineKeyboardMarkup([[InlineKeyboardButton('• ᴄᴀɴᴄᴇʟ', 'terminate_frwd')]])
-
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
+CANCEL_BTN = InlineKeyboardMarkup([[InlineKeyboardButton('• ביטול', 'terminate_frwd')]])
 
 def encode_file_id(s: bytes) -> str:
     r = b""
@@ -47,9 +35,6 @@ def encode_file_id(s: bytes) -> str:
 
     return base64.urlsafe_b64encode(r).decode().rstrip("=")
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 def unpack_new_file_id(new_file_id):
     """Return file_id"""
@@ -65,22 +50,19 @@ def unpack_new_file_id(new_file_id):
     )
     return file_id
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 @Client.on_message(filters.command("unequify") & filters.private)
 async def unequify(client, message):
    user_id = message.from_user.id
    temp.CANCEL[user_id] = False
    if temp.lock.get(user_id) and str(temp.lock.get(user_id))=="True":
-      return await message.reply("**please wait until previous task complete**")
+      return await message.reply("**אנא המתן עד להשלמת המשימה הקודמת!**")
    _bot = await db.get_userbot(user_id)
    if not _bot:
-      return await message.reply("<b>Need userbot to do this process. Please add a userbot using /settings</b>")
-   target = await client.ask(user_id, text="**Forward the last message from target chat or send last message link.**\n/cancel - `cancel this process`")
+      return await message.reply("<b>צריך יוזרבוט כדי לבצע את התהליך הזה.  אנא הוסף משתמש בוט באמצעות /settings</b>")
+   target = await client.ask(user_id, text="**העבר את ההודעה האחרונה מצ'אט היעד או שלח קישור להודעה אחרונה.**\n/cancel - `כדי לבטל את התהליך`")
    if target.text and target.text.startswith("/"):
-      return await message.reply("**process cancelled !**")
+      return await message.reply("**התהליך בוטל !**")
    elif target.text:
       regex = re.compile("(https://)?(t\.me/|telegram\.me/|telegram\.dog/)(c/)?(\d+|[a-zA-Z_0-9]+)/(\d+)$")
       match = regex.match(target.text.replace("?single", ""))
@@ -95,9 +77,9 @@ async def unequify(client, message):
         chat_id = target.forward_from_chat.username or target.forward_from_chat.id
    else:
         return await message.reply_text("**invalid !**")
-   confirm = await client.ask(user_id, text="**send /yes to start the process and /no to cancel this process**")
+   confirm = await client.ask(user_id, text="**שלח /yes כדי להתחיל את התהליך ו-/no כדי לבטל תהליך זה**")
    if confirm.text.lower() == '/no':
-      return await confirm.reply("**process cancelled !**")
+      return await confirm.reply("**התהליך בוטל !**")
    sts = await confirm.reply("`processing..`")
    il = False
    data = _bot['session']
@@ -110,7 +92,7 @@ async def unequify(client, message):
        k = await bot.send_message(chat_id, text="testing")
        await k.delete()
    except:
-       await sts.edit(f"**please make your [userbot](t.me/{_bot['username']}) admin in target chat with full permissions**")
+       await sts.edit(f"**בבקשה שים ל [יוזרבוט](t.me/{_bot['username']}) שלך מנהל עם הרשאות מלאות בצ'אט יעד.**")
        return await bot.stop()
    MESSAGES = []
    DUPLICATE = []
@@ -148,6 +130,3 @@ async def unequify(client, message):
    await sts.edit(Script.DUPLICATE_TEXT.format(total, deleted, "ᴄᴏᴍᴘʟᴇᴛᴇᴅ"), reply_markup=COMPLETED_BTN)
    await bot.stop()
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
