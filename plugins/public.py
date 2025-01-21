@@ -1,7 +1,3 @@
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
-
 import re
 import asyncio 
 from .utils import STS
@@ -14,9 +10,6 @@ from pyrogram.errors.exceptions.not_acceptable_406 import ChannelPrivate as Priv
 from pyrogram.errors.exceptions.bad_request_400 import ChannelInvalid, ChatAdminRequired, UsernameInvalid, UsernameNotModified, ChannelPrivate
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery, KeyboardButton, ReplyKeyboardMarkup, ReplyKeyboardRemove
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 @Client.on_message(filters.private & filters.command(["forward"]))
 async def run(bot, message):
@@ -27,10 +20,10 @@ async def run(bot, message):
     if not _bot:
       _bot = await db.get_userbot(user_id)
       if not _bot:
-          return await message.reply("<code>You didn't added any bot. Please add a bot using /settings !</code>")
+          return await message.reply("לא הוספת אף בוט.  נא הוסף בוט באמצעות /settings !")
     channels = await db.get_user_channels(user_id)
     if not channels:
-       return await message.reply_text("please set a to channel in /settings before forwarding")
+       return await message.reply_text("אנא הגדר ערוץ ב-/settings לפני ההעברה")
     if len(channels) > 1:
        for channel in channels:
           buttons.append([KeyboardButton(f"{channel['title']}")])
@@ -42,7 +35,7 @@ async def run(bot, message):
        to_title = _toid.text
        toid = btn_data.get(to_title)
        if not toid:
-          return await message.reply_text("wrong channel choosen !", reply_markup=ReplyKeyboardRemove())
+          return await message.reply_text("ערוץ שגוי נבחר !", reply_markup=ReplyKeyboardRemove())
     else:
        toid = channels[0]['chat_id']
        to_title = channels[0]['title']
@@ -65,7 +58,7 @@ async def run(bot, message):
         if last_msg_id == None:
            return await message.reply_text("**This may be a forwarded message from a group and sended by anonymous admin. instead of this please send last message link from group**")
     else:
-        await message.reply_text("**invalid !**")
+        await message.reply_text("**לא בתוקף !**")
         return 
     try:
         title = (await bot.get_chat(chat_id)).title
@@ -93,7 +86,3 @@ async def run(bot, message):
         reply_markup=reply_markup
     )
     STS(forward_id).store(chat_id, toid, int(skipno.text), int(last_msg_id))
-
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
