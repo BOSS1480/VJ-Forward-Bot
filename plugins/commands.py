@@ -24,8 +24,6 @@ main_buttons = [[
     InlineKeyboardButton('ערוץ עדכונים 📢', url='https://t.me/bot_sratim_sdarot'),
     InlineKeyboardButton('תמיכה ✨', url='https://t.me/+qn1oVKhkA3RlZmQ0')
 ],[
-    InlineKeyboardButton('💝 sᴜʙsᴄʀɪʙᴇ ᴍʏ ʏᴏᴜᴛᴜʙᴇ ᴄʜᴀɴɴᴇʟ', url='https://youtube.com/@Tech_VJ')
-],[
     InlineKeyboardButton('עזרה 🛠️', callback_data='help'),
     InlineKeyboardButton('מידע 😎', callback_data='about')
 ],[
