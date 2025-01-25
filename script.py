@@ -39,7 +39,7 @@ class  Script(object):
   
   ABOUT_TXT = """<b>╔════❰ ғᴏʀᴡᴀʀᴅ ʙᴏᴛ ❱═❍⊱❁۪۪
 ║╭━━━━━━━━━━━━━━━➣
-║┣⪼📃ʙᴏᴛ : </b><a href="https://t.me/The_Auto_Forward_RoBot"><b>Fᴏʀᴡᴀᴅ Bᴏᴛ</b></a><b>
+║┣⪼📃ʙᴏᴛ : </b><a href="https://t.me/My_Forward_Messages_RoBot"><b>Fᴏʀᴡᴀᴅ Bᴏᴛ</b></a><b>
 ║┣⪼👦Cʀᴇᴀᴛᴏʀ : </b><a href="https://t.me/The_Joker121"><b>𝑻𝒉𝒆 𝑱𝒐𝒌𝒆𝒓🃏</b></a><b>
 ║┣⪼🤖Uᴘᴅᴀᴛᴇ : </b><a href="https://t.me/bot_sratim_sdarot"><b>בוטים 🇮🇱</b></a><b>
 ║┣⪼📡Hᴏsᴛᴇᴅ ᴏɴ : Sᴜᴘᴇʀ Fᴀsᴛ
