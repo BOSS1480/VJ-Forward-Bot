@@ -465,7 +465,7 @@ def extra_buttons():
        InlineKeyboardButton('🕹 הרחבות',
                     callback_data=f'settings#get_extension')
        ],[
-       InlineKeyboardButton('⫷ Bᴀᴄᴋ',
+       InlineKeyboardButton('• חזרה',
                     callback_data=f'settings#main')
        ]]
    return InlineKeyboardMarkup(buttons)
@@ -491,7 +491,7 @@ def main_buttons():
        InlineKeyboardButton('הגדרות נוספות 🧪',
                     callback_data=f'settings#extra')
        ],[
-       InlineKeyboardButton('⫷ Bᴀᴄᴋ',
+       InlineKeyboardButton('• חזרה',
                     callback_data=f'help')
        ]]
   return InlineKeyboardMarkup(buttons)
@@ -629,9 +629,9 @@ async def filters_buttons(user_id):
        InlineKeyboardButton('✅' if filters['audio'] else '❌',
                     callback_data=f'settings#updatefilter-audio-{filters["audio"]}')
        ],[
-       InlineKeyboardButton('⫷ back',
+       InlineKeyboardButton('⫷',
                     callback_data="settings#main"),
-       InlineKeyboardButton('next ⫸',
+       InlineKeyboardButton('⫸',
                     callback_data="settings#nextfilters")
        ]]
   return InlineKeyboardMarkup(buttons) 
@@ -672,9 +672,9 @@ async def next_filters_buttons(user_id):
        InlineKeyboardButton('✅' if filter['protect'] else '❌',
                     callback_data=f'settings#updatefilter-protect-{filter["protect"]}')
        ],[
-       InlineKeyboardButton('⫷ back', 
+       InlineKeyboardButton('⫷', 
                     callback_data="settings#filters"),
-       InlineKeyboardButton('End ⫸',
+       InlineKeyboardButton('⫸',
                     callback_data="settings#main")
        ]]
   return InlineKeyboardMarkup(buttons) 
