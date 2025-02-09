@@ -52,7 +52,7 @@ async def helpcb(bot, query):
         InlineKeyboardButton('• אודות', callback_data='about'),
         InlineKeyboardButton('• הגדרות', callback_data='settings#main')
     ],[
-        InlineKeyboardButton('• חזרה', callback_data='back')
+        InlineKeyboardButton('⟨⟨ חזרה', callback_data='back')
     ]]
     reply_markup = InlineKeyboardMarkup(buttons)
     await query.message.edit_text(text=Script.HELP_TXT, reply_markup=reply_markup)
