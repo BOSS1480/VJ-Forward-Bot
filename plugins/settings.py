@@ -46,7 +46,7 @@ async def settings_query(bot, query):
      else:
         buttons.append([InlineKeyboardButton('✚ הוסף יוזרבוט ✚', 
                          callback_data="settings#adduserbot")])
-     buttons.append([InlineKeyboardButton('חזרה', 
+     buttons.append([InlineKeyboardButton('חזרה ⟩⟩', 
                       callback_data="settings#main")])
      await query.message.edit_text(
        "<b><u>הבוטים שלי:</b></u>\n\n<b>אתה יכול לנהל את הבוטים שלך כאן</b>",
@@ -76,7 +76,7 @@ async def settings_query(bot, query):
                          callback_data=f"settings#editchannels_{channel['chat_id']}")])
      buttons.append([InlineKeyboardButton('✚ הוסף ערוץ ✚', 
                       callback_data="settings#addchannel")])
-     buttons.append([InlineKeyboardButton('חזרה', 
+     buttons.append([InlineKeyboardButton('חזרה ⟩⟩', 
                       callback_data="settings#main")])
      await query.message.edit_text( 
        "<b><u>הערוצים שלי:</b></u>\n\n<b>אתה יכול לנהל את הצ'אטים היעד שלך כאן</b>",
@@ -106,7 +106,7 @@ async def settings_query(bot, query):
      TEXT = Script.BOT_DETAILS if bot['is_bot'] else Script.USER_DETAILS
      buttons = [[InlineKeyboardButton('❌ מחק ❌', callback_data=f"settings#removebot")
                ],
-               [InlineKeyboardButton('חזרה', callback_data="settings#bots")]]
+               [InlineKeyboardButton('חזרה ⟩⟩', callback_data="settings#bots")]]
      await query.message.edit_text(
         TEXT.format(bot['name'], bot['id'], bot['username']),
         reply_markup=InlineKeyboardMarkup(buttons))
@@ -116,7 +116,7 @@ async def settings_query(bot, query):
      TEXT = Script.USER_DETAILS
      buttons = [[InlineKeyboardButton('❌ מחק ❌', callback_data=f"settings#removeuserbot")
                ],
-               [InlineKeyboardButton('חזרה', callback_data="settings#bots")]]
+               [InlineKeyboardButton('חזרה ⟩⟩', callback_data="settings#bots")]]
      await query.message.edit_text(
         TEXT.format(bot['name'], bot['id'], bot['username']),
         reply_markup=InlineKeyboardMarkup(buttons))
@@ -138,7 +138,7 @@ async def settings_query(bot, query):
      chat = await db.get_channel_details(user_id, chat_id)
      buttons = [[InlineKeyboardButton('❌ מחק ❌', callback_data=f"settings#removechannel_{chat_id}")
                ],
-               [InlineKeyboardButton('חזרה', callback_data="settings#channels")]]
+               [InlineKeyboardButton('חזרה ⟩⟩', callback_data="settings#channels")]]
      await query.message.edit_text(
         f"<b><u>📄 פרטי הערוץ</b></u>\n\n<b>- כותרת:</b> <code>{chat['title']}</code>\n<b>- מזהה ערוץ: </b> <code>{chat['chat_id']}</code>\n<b>- יוזר:</b> {chat['username']}",
         reply_markup=InlineKeyboardMarkup(buttons))
@@ -162,7 +162,7 @@ async def settings_query(bot, query):
                       callback_data="settings#seecaption")])
         buttons[-1].append(InlineKeyboardButton('🗑️ מחק כיתוב', 
                       callback_data="settings#deletecaption"))
-     buttons.append([InlineKeyboardButton('חזרה', 
+     buttons.append([InlineKeyboardButton('חזרה ⟩⟩', 
                       callback_data="settings#main")])
      await query.message.edit_text(
         "<b><u>כתובית מותאמת אישית</b></u>\n\n<b>אתה יכול להגדיר כיתוב מותאם אישית לסרטונים ומסמכים.  בדרך כלל השתמש בכיתוב ברירת המחדל שלו</b>\n\n<b><u>מילויים זמינים:</b></u>\n- <code>{filename}</code> : שם קובץ\n- <code>{size}</code> : גודל קובץ\n- <code>{caption}</code> : כיתוב ברירת מחדל",
@@ -173,7 +173,7 @@ async def settings_query(bot, query):
      buttons = [[InlineKeyboardButton('🖋️ ערוך כיתוב', 
                   callback_data="settings#addcaption")
                ],[
-               InlineKeyboardButton('חזרה', 
+               InlineKeyboardButton('חזרה ⟩⟩', 
                  callback_data="settings#caption")]]
      await query.message.edit_text(
         f"<b><u>הכיתוב המותאם אישית שלך:</b></u>\n\n<code>{data['caption']}</code>",
@@ -214,7 +214,7 @@ async def settings_query(bot, query):
                       callback_data="settings#seebutton")])
         buttons[-1].append(InlineKeyboardButton('🗑️ מחק כפתור', 
                       callback_data="settings#deletebutton"))
-     buttons.append([InlineKeyboardButton('back', 
+     buttons.append([InlineKeyboardButton('חזרה ⟩⟩', 
                       callback_data="settings#main")])
      await query.message.edit_text(
         "<b><u>כפתור מותאם אישית</b></u>\n\n<b>אתה יכול להגדיר כפתור מוטבע להודעות.</b>\n\n<b><u>פורמט:</b></u>\n`[Forward bot][buttonurl:https://t.me/bot_sratim_sdarot]`\n",
@@ -233,7 +233,7 @@ async def settings_query(bot, query):
   elif type=="seebutton":
       button = (await get_configs(user_id))['button']
       button = parse_buttons(button, markup=False)
-      button.append([InlineKeyboardButton("חזרה", "settings#button")])
+      button.append([InlineKeyboardButton("חזרה ⟩⟩", "settings#button")])
       await query.message.edit_text(
          "**הכפתורים שלך**",
          reply_markup=InlineKeyboardMarkup(button))
@@ -255,7 +255,7 @@ async def settings_query(bot, query):
                       callback_data="settings#seeurl")])
         buttons[-1].append(InlineKeyboardButton('❌ מחק קישור', 
                       callback_data="settings#deleteurl"))
-     buttons.append([InlineKeyboardButton('חזרה', 
+     buttons.append([InlineKeyboardButton('חזרה ⟩⟩', 
                       callback_data="settings#main")])
      await query.message.edit_text(
         "<b><u>מסד נתונים</u>\n\nמסד נתונים נדרש לאחסון ההודעות הכפולות שלך לצמיתות. מדיה כפולה אחרת המאוחסנת בצורה חכמה עשויה להיעלם לאחר הפעלה מחדש של הבוט.</b>",
@@ -389,7 +389,7 @@ async def settings_query(bot, query):
        text += "** No Extensions Here**"
     btn.append([InlineKeyboardButton('✚ הוסף', 'settings#add_extension')])
     btn.append([InlineKeyboardButton('מחק הכל', 'settings#rmve_all_extension')])
-    btn.append([InlineKeyboardButton('back', 'settings#extra')])
+    btn.append([InlineKeyboardButton('חזרה ⟩⟩', 'settings#extra')])
     await query.message.edit_text(
         text=f"<b><u>הרחבות</u></b>\n\n**קבצים עם כינויים אלה לא יועברו**\n\n{text}",
         reply_markup=InlineKeyboardMarkup(btn))
@@ -417,7 +417,7 @@ async def settings_query(bot, query):
         keyword = keywords
     await update_configs(user_id, 'keywords', keyword)
     buttons = []
-    buttons.append([InlineKeyboardButton('back', 
+    buttons.append([InlineKeyboardButton('חזרה ⟩⟩', 
                       callback_data="settings#get_keyword")])
     await ask.reply_text(
         f"**עודכן בהצלחה!**",
@@ -435,7 +435,7 @@ async def settings_query(bot, query):
        text += "**לא הוספת מילות מפתח**"
     btn.append([InlineKeyboardButton('✚ הוסף', 'settings#add_keyword')])
     btn.append([InlineKeyboardButton('מחק הכל', 'settings#rmve_all_keyword')])
-    btn.append([InlineKeyboardButton('Back', 'settings#extra')])
+    btn.append([InlineKeyboardButton('חזרה ⟩⟩', 'settings#extra')])
     await query.message.edit_text(
         text=f"<b><u>מילות מפתח</u></b>\n\n**קבצים עם מילות מפתח אלו בשם הקובץ יעברו רק**\n\n{text}",
         reply_markup=InlineKeyboardMarkup(btn))
@@ -443,7 +443,7 @@ async def settings_query(bot, query):
   elif type == "rmve_all_keyword":
     await update_configs(user_id, 'keywords', None)
     buttons = []
-    buttons.append([InlineKeyboardButton('back', 
+    buttons.append([InlineKeyboardButton('חזרה ⟩⟩', 
                       callback_data="settings#get_keyword")])
     await query.message.edit_text(text="**נמחק בהצלחה את כל מילות המפתח**",
                                    reply_markup=InlineKeyboardMarkup(buttons))
@@ -465,7 +465,7 @@ def extra_buttons():
        InlineKeyboardButton('🕹 הרחבות',
                     callback_data=f'settings#get_extension')
        ],[
-       InlineKeyboardButton('• חזרה',
+       InlineKeyboardButton('חזרה ⟩⟩',
                     callback_data=f'settings#main')
        ]]
    return InlineKeyboardMarkup(buttons)
