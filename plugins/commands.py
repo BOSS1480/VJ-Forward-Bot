@@ -14,12 +14,12 @@ START_TIME = time.time()
 
 
 main_buttons = [[
-    InlineKeyboardButton('• עזרה', callback_data='help')
+    InlineKeyboardButton('❗ עזרה', callback_data='help')
 ], [
-    InlineKeyboardButton('• עדכונים', url='https://t.me/bot_sratim_sdarot'),
-    InlineKeyboardButton('• תמיכה', url='https://t.me/+qn1oVKhkA3RlZmQ0')
+    InlineKeyboardButton('🔔 עדכונים', url='https://t.me/bot_sratim_sdarot'),
+    InlineKeyboardButton('📜 תמיכה', url='https://t.me/+qn1oVKhkA3RlZmQ0')
 ], [
-    InlineKeyboardButton('• הגדרות', callback_data='settings#main')
+    InlineKeyboardButton('⚙️ הגדרות', callback_data='settings#main')
 ]]
 
 
@@ -47,7 +47,7 @@ async def restart(client, message):
 @Client.on_callback_query(filters.regex(r'^help'))
 async def helpcb(bot, query):
     buttons = [[
-        InlineKeyboardButton('• איך להתשמש בי', callback_data='how_to_use')
+        InlineKeyboardButton('• איך להתשמש בי ?', callback_data='how_to_use')
     ],[
         InlineKeyboardButton('• אודות', callback_data='about'),
         InlineKeyboardButton('• הגדרות', callback_data='settings#main')
