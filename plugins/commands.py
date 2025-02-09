@@ -49,7 +49,7 @@ async def helpcb(bot, query):
     buttons = [[
         InlineKeyboardButton('• איך להתשמש בי', callback_data='how_to_use')
     ],[
-        InlineKeyboardButton('• מידע', callback_data='about'),
+        InlineKeyboardButton('• אודות, callback_data='about'),
         InlineKeyboardButton('• הגדרות', callback_data='settings#main')
     ],[
         InlineKeyboardButton('• חזרה', callback_data='back')
