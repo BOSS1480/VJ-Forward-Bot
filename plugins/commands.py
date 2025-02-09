@@ -14,13 +14,12 @@ START_TIME = time.time()
 
 
 main_buttons = [[
-    InlineKeyboardButton('ערוץ עדכונים 📢', url='https://t.me/bot_sratim_sdarot'),
-    InlineKeyboardButton('תמיכה ✨', url='https://t.me/+qn1oVKhkA3RlZmQ0')
-],[
-    InlineKeyboardButton('עזרה 🛠️', callback_data='help'),
-    InlineKeyboardButton('מידע 😎', callback_data='about')
-],[
-    InlineKeyboardButton('הגדרות ⚙', callback_data='settings#main')
+    InlineKeyboardButton('• עזרה', callback_data='help')
+], [
+    InlineKeyboardButton('• עדכונים', url='https://t.me/bot_sratim_sdarot'),
+    InlineKeyboardButton('• תמיכה', url='https://t.me/+qn1oVKhkA3RlZmQ0')
+], [
+    InlineKeyboardButton('• הגדרות', callback_data='settings#main')
 ]]
 
 
@@ -48,10 +47,10 @@ async def restart(client, message):
 @Client.on_callback_query(filters.regex(r'^help'))
 async def helpcb(bot, query):
     buttons = [[
-        InlineKeyboardButton('🤔 איך להתשמש בי ❓', callback_data='how_to_use')
+        InlineKeyboardButton('• איך להתשמש בי', callback_data='how_to_use')
     ],[
-        InlineKeyboardButton('מידע ✨', callback_data='about'),
-        InlineKeyboardButton('הגדרות ⚙', callback_data='settings#main')
+        InlineKeyboardButton('• מידע', callback_data='about'),
+        InlineKeyboardButton('• הגדרות', callback_data='settings#main')
     ],[
         InlineKeyboardButton('• חזרה', callback_data='back')
     ]]
@@ -81,7 +80,7 @@ async def back(bot, query):
 async def about(bot, query):
     buttons = [[
          InlineKeyboardButton('• חזרה', callback_data='help'),
-         InlineKeyboardButton('סטטיסטיקות ✨️', callback_data='status')
+         InlineKeyboardButton('• סטטיסטיקות', callback_data='status')
     ]]
     reply_markup = InlineKeyboardMarkup(buttons)
     await query.message.edit_text(
@@ -98,7 +97,7 @@ async def status(bot, query):
     upt = await get_bot_uptime(START_TIME)
     buttons = [[
         InlineKeyboardButton('• חזרה', callback_data='help'),
-        InlineKeyboardButton('סטטוס בוט', callback_data='systm_sts'),
+        InlineKeyboardButton('• סטטוס בוט', callback_data='systm_sts'),
     ]]
     reply_markup = InlineKeyboardMarkup(buttons)
     await query.message.edit_text(
